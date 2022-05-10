@@ -23,8 +23,6 @@
         <button class="btn btn-green btn-full"><i class="fa fa-arrow-alt-circle-right text-white"></i> Login</button>
     </form>
 </div>
-<p>&copy dimas aldi</p>
-<img src="asset/image/top-image.svg" id="hiasan"><br>
 </body>
 <script src="asset/js/jquery.js" type="text/javascript"></script>
 <script src="asset/js/main.js" type="text/javascript"></script>

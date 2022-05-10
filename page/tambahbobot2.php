@@ -7,29 +7,29 @@
     <input type="hidden" value="bobot" name="op">
     <div class="panel-middle">
         <div class="group-input">
-            <label for="barang">Jenis Barang</label>
-            <select class="form-custom" required name="barang" id="barang">
-                <option selected disabled>--Pilih Jenis Barang--</option>
+            <label for="penginapan">Jenis Penginapan</label>
+            <select class="form-custom" required name="penginapan" id="penginapan">
+                <option selected disabled>--Pilih Jenis Penginapan--</option>
                 <?php
-                $query="SELECT * FROM jenis_barang";
+                $query="SELECT * FROM jenis_penginapan";
                 $execute=$konek->query($query);
                 if ($execute->num_rows > 0){
                     while($data=$execute->fetch_array(MYSQLI_ASSOC)){
-                        echo "<option value=\"$data[id_jenisbarang]\">$data[namaBarang]</option>";
+                        echo "<option value=\"$data[id_jenispenginapan]\">$data[namaPenginapan]</option>";
                     }
                 }else {
-                    echo "<option value=\"\">Belum ada Jenis Barang</option>";
+                    echo "<option value=\"\">Belum ada Jenis Penginapan</option>";
                 }
                 ?>
             </select>
         </div>
         <?php
 $listWeight=array(
-    array("nama"=>"0 - Sangat Rendah","nilai"=>0),
-    array("nama"=>"0.25 - Rendah","nilai"=>0.25),
-    array("nama"=>"0.5 - Tengah","nilai"=>0.5),
-    array("nama"=>"0.75 - Tinggi","nilai"=>0.75),
-    array("nama"=>"1 - Sangat Tinggi","nilai"=>1),
+    array("nama"=>"1","nilai"=>1),
+    array("nama"=>"2","nilai"=>2),
+    array("nama"=>"3","nilai"=>3),
+    array("nama"=>"4","nilai"=>4),
+    array("nama"=>"5","nilai"=>5),
 );
         $query="SELECT * FROM kriteria";
         $execute=$konek->query($query);

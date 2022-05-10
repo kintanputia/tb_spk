@@ -1,23 +1,23 @@
 <?php
 $id=htmlspecialchars(@$_GET['id']);
-$query="SELECT * FROM supplier WHERE id_supplier='$id'";
+$query="SELECT id_jenispenginapan,namaPenginapan FROM jenis_penginapan WHERE id_jenispenginapan='$id'";
 $execute=$konek->query($query);
 if ($execute->num_rows > 0){
     $data=$execute->fetch_array(MYSQLI_ASSOC);
 }else{
-    header('location:./?page=supplier');
+    header('location:./?page=penginapan');
 }
 ?>
 <div class="panel-top panel-top-edit">
     <b><i class="fa fa-pencil-alt"></i> Ubah data</b>
 </div>
 <form id="form" method="POST" action="./proses/prosesubah.php">
-    <input type="hidden" name="op" value="supplier">
-    <input type="hidden" name="id" value="<?php echo $data['id_supplier']; ?>">
+    <input type="hidden" name="op" value="penginapan">
+    <input type="hidden" name="id" value="<?php echo $data['id_jenispenginapan']; ?>">
     <div class="panel-middle">
         <div class="group-input">
-            <label for="supplier" >Nama Supplier :</label>
-            <input type="text" value="<?php echo $data['namaSupplier']; ?>" class="form-custom" required autocomplete="off" placeholder="Nama Supplier" id="supplier" name="supplier">
+            <label for="penginapan" >Nama Penginapan :</label>
+            <input type="text" value="<?php echo $data['namaPenginapan']; ?>" class="form-custom" required autocomplete="off" placeholder="Nama Penginapan" id="penginapan" name="penginapan">
         </div>
     </div>
     <div class="panel-bottom">

@@ -1,9 +1,8 @@
 <div class="panel">
     <div class="panel-middle" id="judul">
-        <img src="asset/image/supplier.svg">
         <div id="judul-text">
-            <h2 class="text-green">Supplier</h2>
-            Halamanan Administrator Supplier
+            <h2 class="text-green">Perusahaan</h2>
+            Halamanan Administrator Perusahaan
         </div>
     </div>
 </div>
@@ -13,9 +12,9 @@
         <div class="panel">
             <?php
             if (@htmlspecialchars($_GET['aksi'])=='ubah'){
-                include 'ubahsupplier.php';
+                include 'ubahperusahaan.php';
             }else{
-                include 'tambahsupplier.php';
+                include 'tambahperusahaan.php';
             }
             ?>
         </div>
@@ -23,7 +22,7 @@
     <div class="col-8">
         <div class="panel">
             <div class="panel-top">
-                <b class="text-green">Daftar Supplier</b>
+                <b class="text-green">Daftar Perusahaan</b>
             </div>
             <div class="panel-middle">
                 <div class="table-responsive">
@@ -31,7 +30,7 @@
                         <thead><tr><th>No</th><th>Nama</th><th>Aksi</th></tr></thead>
                         <tbody>
                         <?php
-                        $query="SELECT * FROM supplier";
+                        $query="SELECT * FROM perusahaan";
                         $execute=$konek->query($query);
                         if ($execute->num_rows > 0){
                             $no=1;
@@ -39,11 +38,11 @@
                                 echo"
                                 <tr id='data'>
                                     <td>$no</td>
-                                    <td>$data[namaSupplier]</td>
+                                    <td>$data[namaPerusahaan]</td>
                                     <td>
                                     <div class='norebuttom'>
-                                    <a class=\"btn btn-light-green\" href='./?page=supplier&aksi=ubah&id=".$data['id_supplier']."'><i class='fa fa-pencil-alt'></i></a>
-                                    <a class=\"btn btn-yellow\" data-a=".$data['namaSupplier']." id='hapus' href='./proses/proseshapus.php/?op=supplier&id=".$data['id_supplier']."'><i class='fa fa-trash-alt'></i></a>
+                                    <a class=\"btn btn-light-green\" href='./?page=perusahaan&aksi=ubah&id=".$data['id_perusahaan']."'><i class='fa fa-pencil-alt'></i></a>
+                                    <a class=\"btn btn-yellow\" data-a=".$data['namaPerusahaan']." id='hapus' href='./proses/proseshapus.php/?op=perusahaan&id=".$data['id_perusahaan']."'><i class='fa fa-trash-alt'></i></a>
                                     </div></td>
                                 </tr>";
                                 $no++;

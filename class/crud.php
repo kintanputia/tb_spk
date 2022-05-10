@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: dimas
- * Date: 10/06/2018
- * Time: 17:41
- */
 
 class crud
 {

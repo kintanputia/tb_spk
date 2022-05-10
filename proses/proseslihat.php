@@ -39,11 +39,11 @@ switch ($op){
         break;
     case 'nilai':
         if (!empty($id)) {
-            $where="WHERE nilai_supplier.id_jenisbarang='$id'";
+            $where="WHERE nilai_perusahaan.id_jenispenginapan='$id'";
         }else{
             $where=null;
         }
-        $query="SELECT id_nilaisupplier,id_supplier,supplier.namaSupplier AS namaSupplier,jenis_barang.id_jenisbarang AS id_jenisbarang,jenis_barang.namaBarang AS namaBarang FROM nilai_supplier INNER JOIN supplier USING(id_supplier) INNER JOIN jenis_barang USING (id_jenisbarang) $where GROUP BY id_supplier ORDER BY id_jenisbarang,id_supplier ASC";
+        $query="SELECT id_nilaiperusahaan,id_perusahaan,perusahaan.namaPerusahaan AS namaPerusahaan,jenis_penginapan.id_jenispenginapan AS id_jenispenginapan,jenis_penginapan.namaPenginapan AS namaPenginapan FROM nilai_perusahaan INNER JOIN perusahaan USING(id_perusahaan) INNER JOIN jenis_penginapan USING (id_jenispenginapan) $where GROUP BY id_perusahaan ORDER BY id_jenispenginapan,id_perusahaan ASC";
         $execute=$konek->query($query);
         if ($execute->num_rows > 0){
             $no=1;
@@ -51,13 +51,13 @@ switch ($op){
                echo"
                 <tr id='data'>
                     <td>$no</td>
-                    <td>$data[namaBarang]</td>
-                    <td>$data[namaSupplier]</td>
+                    <td>$data[namaPenginapan]</td>
+                    <td>$data[namaPerusahaan]</td>
                     <td>
                     <div class='norebuttom'>
-                    <a class=\"btn btn-green\" href=\"./?page=penilaian&aksi=lihat&a=$data[id_supplier]&b=$data[id_jenisbarang]\"><i class='fa fa-eye'></i></a>
-                    <a class=\"btn btn-light-green\" href=\"./?page=penilaian&aksi=ubah&a=$data[id_supplier]&b=$data[id_jenisbarang]\"><i class='fa fa-pencil-alt'></i></a>
-                    <a class=\"btn btn-yellow\" data-a=\".$data[namaBarang] - $data[namaSupplier]\" id='hapus' href='./proses/proseshapus.php/?op=nilai&id=".$data['id_supplier']."'><i class='fa fa-trash-alt'></i></a></td>
+                    <a class=\"btn btn-green\" href=\"./?page=penilaian&aksi=lihat&a=$data[id_perusahaan]&b=$data[id_jenispenginapan]\"><i class='fa fa-eye'></i></a>
+                    <a class=\"btn btn-light-green\" href=\"./?page=penilaian&aksi=ubah&a=$data[id_perusahaan]&b=$data[id_jenispenginapan]\"><i class='fa fa-pencil-alt'></i></a>
+                    <a class=\"btn btn-yellow\" data-a=\".$data[namaPenginapan] - $data[namaPerusahaan]\" id='hapus' href='./proses/proseshapus.php/?op=nilai&id=".$data['id_perusahaan']."'><i class='fa fa-trash-alt'></i></a></td>
                 </div></tr>";
                 $no++;
             }

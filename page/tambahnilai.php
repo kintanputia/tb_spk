@@ -6,35 +6,35 @@
     <input type="hidden" value="nilai" name="op">
     <div class="panel-middle">
         <div class="group-input">
-            <label for="supplier">Supplier</label>
-            <select class="form-custom" required name="supplier" id="supplier">
-                <option selected disabled>--Pilih Supplier--</option>
+            <label for="perusahaan">Perusahaan</label>
+            <select class="form-custom" required name="perusahaan" id="perusahaan">
+                <option selected disabled>--Pilih Perusahaan--</option>
                 <?php
-                $query="SELECT id_supplier,namaSupplier FROM supplier";
+                $query="SELECT id_perusahaan,namaPerusahaan FROM perusahaan";
                 $execute=$konek->query($query);
                 if ($execute->num_rows > 0){
                     while($data=$execute->fetch_array(MYSQLI_ASSOC)){
-                        echo "<option value=\"$data[id_supplier]\">$data[namaSupplier]</option>";
+                        echo "<option value=\"$data[id_perusahaan]\">$data[namaPerusahaan]</option>";
                     }
                 }else {
-                    echo "<option disabled value=\"\">Belum ada Supplier</option>";
+                    echo "<option disabled value=\"\">Belum ada Perusahaan</option>";
                 }
                 ?>
             </select>
         </div>
         <div class="group-input">
-            <label for="barang">Jenis Barang</label>
-            <select class="form-custom" required name="barang" id="barang">
-                <option selected disabled>--Pilih Jenis Barang--</option>
+            <label for="penginapan">Jenis Penginapan</label>
+            <select class="form-custom" required name="penginapan" id="penginapan">
+                <option selected disabled>--Pilih Jenis Penginapan--</option>
                 <?php
-                $query="SELECT * FROM jenis_barang";
+                $query="SELECT * FROM jenis_penginapan";
                 $execute=$konek->query($query);
                 if ($execute->num_rows > 0){
                     while($data=$execute->fetch_array(MYSQLI_ASSOC)){
-                        echo "<option value=\"$data[id_jenisbarang]\">$data[namaBarang]</option>";
+                        echo "<option value=\"$data[id_jenispenginapan]\">$data[namaPenginapan]</option>";
                     }
                 }else {
-                    echo "<option disabled value=\"\">Belum ada Jenis Barang</option>";
+                    echo "<option disabled value=\"\">Belum ada Jenis Penginapan</option>";
                 }
                 ?>
             </select>

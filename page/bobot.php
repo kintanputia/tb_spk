@@ -4,7 +4,6 @@ require './connect.php';
 <!-- judul -->
 <div class="panel">
     <div class="panel-middle" id="judul">
-        <img src="asset/image/bobot.svg">
         <div id="judul-text">
             <h2 class="text-green">BOBOT</h2>
             Halamanan Administrator Bobot Kriteria
@@ -34,10 +33,10 @@ require './connect.php';
             <div class="panel-middle">
                 <div class="table-responsive">
                     <table>
-                        <thead><tr><th>No</th><th>Nama Barang</th><th>Aksi</th></tr></thead>
+                        <thead><tr><th>No</th><th>Nama Penginapan</th><th>Aksi</th></tr></thead>
                         <tbody>
                         <?php
-                        $query="SELECT bobot_kriteria.id_jenisbarang AS idbarangbobot,jenis_barang.namaBarang AS namaBarang FROM bobot_kriteria INNER JOIN jenis_barang WHERE bobot_kriteria.id_jenisbarang=jenis_barang.id_jenisbarang GROUP BY idbarangbobot ORDER BY idbarangbobot ASC";
+                        $query="SELECT bobot_kriteria.id_jenispenginapan AS idpenginapanbobot,jenis_penginapan.namaPenginapan AS namaPenginapan FROM bobot_kriteria INNER JOIN jenis_penginapan WHERE bobot_kriteria.id_jenispenginapan=jenis_penginapan.id_jenispenginapan GROUP BY idpenginapanbobot ORDER BY idpenginapanbobot ASC";
                         $execute=$konek->query($query);
                         if ($execute->num_rows > 0){
                             $no=1;
@@ -45,12 +44,12 @@ require './connect.php';
                                 echo"
                                 <tr id='data'>
                                     <td>$no</td>
-                                    <td>$data[namaBarang]</td>
+                                    <td>$data[namaPenginapan]</td>
                                     <td>
                                     <div class='norebuttom'>
-                                    <a class=\"btn btn-green\" href='./?page=bobot&aksi=lihat&id=".$data['idbarangbobot']."'><i class='fa fa-eye'></i></a>
-                                    <a class=\"btn btn-light-green\" href='./?page=bobot&aksi=ubah&id=".$data['idbarangbobot']."'><i class='fa fa-pencil-alt'></i></a>
-                                    <a class=\"btn btn-yellow\" data-a=".$data['namaBarang']." id='hapus' href='./proses/proseshapus.php/?op=bobot&id=".$data['idbarangbobot']."'><i class='fa fa-trash-alt'></i></a></td>
+                                    <a class=\"btn btn-green\" href='./?page=bobot&aksi=lihat&id=".$data['idpenginapanbobot']."'><i class='fa fa-eye'></i></a>
+                                    <a class=\"btn btn-light-green\" href='./?page=bobot&aksi=ubah&id=".$data['idpenginapanbobot']."'><i class='fa fa-pencil-alt'></i></a>
+                                    <a class=\"btn btn-yellow\" data-a=".$data['namaPenginapan']." id='hapus' href='./proses/proseshapus.php/?op=bobot&id=".$data['idpenginapanbobot']."'><i class='fa fa-trash-alt'></i></a></td>
                                 </div></tr>";
                                 $no++;
                             }

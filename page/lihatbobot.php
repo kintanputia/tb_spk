@@ -7,7 +7,7 @@ $listWeight=array(
     array("nama"=>"1 - Sangat Tinggi","nilai"=>1),
 );
 $id=htmlspecialchars(@$_GET['id']);
-$querylihat="SELECT id_jenisbarang,bobot,id_bobotkriteria,kriteria.namaKriteria AS namaKriteria FROM bobot_kriteria INNER JOIN kriteria USING(id_kriteria) WHERE id_jenisbarang='$id'";
+$querylihat="SELECT id_jenispenginapan,bobot,id_bobotkriteria,kriteria.namaKriteria AS namaKriteria FROM bobot_kriteria INNER JOIN kriteria USING(id_kriteria) WHERE id_jenispenginapan='$id'";
 $execute2=$konek->query($querylihat);
 if ($execute2->num_rows == 0){
     header('location:./?page=bobot');
@@ -21,13 +21,13 @@ if ($execute2->num_rows == 0){
     <div class="panel-middle">
         <div class="group-input">
             <?php
-            $query="SELECT namaBarang FROM jenis_barang WHERE id_jenisbarang='$id'";
+            $query="SELECT namaPenginapan FROM jenis_penginapan WHERE id_jenispenginapan='$id'";
             $execute=$konek->query($query);
             $data=$execute->fetch_array(MYSQLI_ASSOC);
             ?>
             <div class="group-input">
-                <label for="jenisbarang">Jenis Barang</label>
-                <input class="form-custom" value="<?php echo $data['namaBarang'];?>" disabled type="text" autocomplete="off" required name="jenisbarang" id="jenisbarang" placeholder="jenisbarang">
+                <label for="jenispenginapan">Jenis Penginapan</label>
+                <input class="form-custom" value="<?php echo $data['namaPenginapan'];?>" disabled type="text" autocomplete="off" required name="jenispenginapan" id="jenispenginapan" placeholder="jenispenginapan">
             </div>
         </div>
         <?php

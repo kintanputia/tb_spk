@@ -1,6 +1,6 @@
 <?php
 require 'connect.php';
-require 'class/saw.php';
+require 'class/saw copy.php';
 $cookiePilih=@$_COOKIE['pilih'];
 if (isset($cookiePilih) and !empty($cookiePilih)) {
 $saw=new saw();
@@ -26,9 +26,9 @@ $saw->setconfig($konek,$cookiePilih);
             <?php
             foreach ($saw->getAlternative() as $key) {
              echo "<tr id='data'>";
-                echo "<td>".$key['namaSupplier']."</td>";
+                echo "<td>".$key['namaPerusahaan']."</td>";
                 $no=0;
-                foreach ($saw->getNilaiMatriks($key['id_supplier']) as $data) {
+                foreach ($saw->getNilaiMatriks($key['id_perusahaan']) as $data) {
                     echo "<td>$data[nilai]</td>";
                 }
                 echo "</tr>";
@@ -55,17 +55,17 @@ $saw->setconfig($konek,$cookiePilih);
         </thead>
         <tbody>
             <?php
-            //foreach data supplier
+            //foreach data perusahaan
             foreach ($saw->getAlternative() as $key) {
              echo "<tr id='data'>";
-                echo "<td>".$key['namaSupplier']."</td>";
+                echo "<td>".$key['namaPerusahaan']."</td>";
                 $no=0;
-                //foreach nilai supplier
-                foreach ($saw->getNilaiMatriks($key['id_supplier']) as $data) {
+                //foreach nilai perusahaan
+                foreach ($saw->getNilaiMatriks($key['id_perusahaan']) as $data) {
                     //menghitung normalisasi
                     $hasil=$saw->Normalisasi($saw->getArrayNilai($data['id_kriteria']),$data['sifat'],$data['nilai']);
                     echo "<td>$hasil</td>";
-                    $hitungbobot[$key['id_supplier']][$no]=$hasil*$saw->getBobot($data['id_kriteria']);
+                    $hitungbobot[$key['id_perusahaan']][$no]=$hasil*$saw->getBobot($data['id_kriteria']);
                     $no++;
                 }
                 echo "</tr>";
@@ -95,14 +95,14 @@ $saw->setconfig($konek,$cookiePilih);
             <?php
             foreach ($saw->getAlternative() as $key) {
              echo "<tr id='data'>";
-                echo "<td>".$key['namaSupplier']."</td>";
+                echo "<td>".$key['namaPerusahaan']."</td>";
                 $no=0;$hasil=0;
-                foreach ($hitungbobot[$key['id_supplier']] as $data) {
+                foreach ($hitungbobot[$key['id_perusahaan']] as $data) {
                     echo "<td>$data</td>";
                     //menjumlahkan
                     $hasil+=$data;
                 }
-                $saw->simpanHasil($key['id_supplier'],$hasil);
+                $saw->simpanHasil($key['id_perusahaan'],$hasil);
                 echo "<td>".$hasil."</td>";
                 echo "</tr>";
             }

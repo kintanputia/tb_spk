@@ -1,13 +1,13 @@
 <?php
 $listWeight=array(
-    array("nama"=>"0 - Sangat Rendah","nilai"=>0),
-    array("nama"=>"0.25 - Rendah","nilai"=>0.25),
-    array("nama"=>"0.5 - Tengah","nilai"=>0.5),
-    array("nama"=>"0.75 - Tinggi","nilai"=>0.75),
-    array("nama"=>"1 - Sangat Tinggi","nilai"=>1),
+    array("nama"=>"1","nilai"=>1),
+    array("nama"=>"2","nilai"=>2),
+    array("nama"=>"3","nilai"=>3),
+    array("nama"=>"4","nilai"=>4),
+    array("nama"=>"5","nilai"=>5),
 );
 $id=htmlspecialchars(@$_GET['id']);
-$querylihat="SELECT id_jenisbarang,bobot,id_bobotkriteria,kriteria.namaKriteria AS namaKriteria FROM bobot_kriteria INNER JOIN kriteria USING(id_kriteria) WHERE id_jenisbarang='$id'";
+$querylihat="SELECT id_jenispenginapan,bobot,id_bobotkriteria,kriteria.namaKriteria AS namaKriteria FROM bobot_kriteria INNER JOIN kriteria USING(id_kriteria) WHERE id_jenispenginapan='$id'";
 $execute2=$konek->query($querylihat);
 if ($execute2->num_rows == 0){
     header('location:./?page=bobot');
@@ -23,13 +23,13 @@ if ($execute2->num_rows == 0){
         <div class="group-input">
             <div class="group-input">
                 <?php
-                $query="SELECT namaBarang FROM jenis_barang WHERE id_jenisbarang='$id'";
+                $query="SELECT namaPenginapan FROM jenis_penginapan WHERE id_jenispenginapan='$id'";
                 $execute=$konek->query($query);
                 $data=$execute->fetch_array(MYSQLI_ASSOC);
                 ?>
                 <div class="group-input">
-                    <label for="jenisbarang">Jenis Barang</label>
-                    <input class="form-custom" value="<?php echo $data['namaBarang'];?>" disabled type="text" autocomplete="off" required name="barang" id="barang">
+                    <label for="jenispenginapan">Jenis Penginapan</label>
+                    <input class="form-custom" value="<?php echo $data['namaPenginapan'];?>" disabled type="text" autocomplete="off" required name="penginapan" id="penginapan">
                 </div>
             </div>
         </div>

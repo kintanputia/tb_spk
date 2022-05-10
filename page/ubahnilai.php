@@ -2,7 +2,7 @@
 $a=htmlspecialchars(@$_GET['a']);
 $b=htmlspecialchars(@$_GET['b']);
 $getData=array();
-$querylihat="SELECT id_nilaikriteria FROM nilai_supplier WHERE id_supplier='$a' AND id_jenisbarang='$b'";
+$querylihat="SELECT id_nilaikriteria FROM nilai_perusahaan WHERE id_perusahaan='$a' AND id_jenispenginapan='$b'";
 $getnilaiKriteria=$konek->query($querylihat);
 while ($data=$getnilaiKriteria->fetch_array(MYSQLI_ASSOC)) {
     array_push($getData,$data['id_nilaikriteria']);
@@ -16,34 +16,34 @@ while ($data=$getnilaiKriteria->fetch_array(MYSQLI_ASSOC)) {
     <div class="panel-middle">
         <div class="group-input">
             <?php
-            $query="SELECT namaSupplier FROM supplier WHERE id_supplier='$a'";
+            $query="SELECT namaPerusahaan FROM perusahaan WHERE id_perusahaan='$a'";
             $execute=$konek->query($query);
             $data=$execute->fetch_array(MYSQLI_ASSOC);
             ?>
             <div class="group-input">
-                <label for="jenisbarang">Nama Supplier</label>
-                <input class="form-custom" value="<?php echo $data['namaSupplier'];?>" disabled type="text" autocomplete="off" required name="jenisbarang" id="jenisbarang">
+                <label for="jenispenginapan">Nama Perusahaan</label>
+                <input class="form-custom" value="<?php echo $data['namaPerusahaan'];?>" disabled type="text" autocomplete="off" required name="jenispenginapan" id="jenispenginapan">
             </div>
         </div>
         <div class="group-input">
             <?php
-            $query="SELECT namaBarang FROM jenis_barang WHERE id_jenisbarang='$b'";
+            $query="SELECT namaPenginapan FROM jenis_penginapan WHERE id_jenispenginapan='$b'";
             $execute=$konek->query($query);
             $data=$execute->fetch_array(MYSQLI_ASSOC);
             ?>
             <div class="group-input">
-                <label for="jenisbarang">Jenis Barang</label>
-                <input class="form-custom" value="<?php echo $data['namaBarang'];?>" disabled type="text" autocomplete="off" required name="jenisbarang" id="jenisbarang" placeholder="jenisbarang">
+                <label for="jenispenginapan">Jenis Penginapan</label>
+                <input class="form-custom" value="<?php echo $data['namaPenginapan'];?>" disabled type="text" autocomplete="off" required name="jenispenginapan" id="jenispenginapan" placeholder="jenispenginapan">
             </div>
         </div>
         <?php
-        $query="SELECT namaKriteria,id_nilaisupplier,id_kriteria FROM nilai_supplier INNER JOIN kriteria USING(id_kriteria) WHERE id_supplier='$a'";
+        $query="SELECT namaKriteria,id_nilaiperusahaan,id_kriteria FROM nilai_perusahaan INNER JOIN kriteria USING(id_kriteria) WHERE id_perusahaan='$a'";
         $execute=$konek->query($query);
         if ($execute->num_rows > 0){
             while($data=$execute->fetch_array(MYSQLI_ASSOC)){
                 echo "<div class=\"group-input\">";
                 echo "<label for=\"nilai\">$data[namaKriteria]</label>";
-                echo "<input type='hidden' value=\"$data[id_nilaisupplier]\" name=\"id[]\">";
+                echo "<input type='hidden' value=\"$data[id_nilaiperusahaan]\" name=\"id[]\">";
                 echo "<select class=\"form-custom\" required name=\"nilai[]\" id=\"nilai\">";
                 $query2="SELECT id_nilaikriteria,keterangan FROM nilai_kriteria WHERE id_kriteria='$data[id_kriteria]'";
                 $execute2=$konek->query($query2);

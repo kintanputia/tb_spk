@@ -10,20 +10,20 @@ if ($_SERVER['REQUEST_METHOD']=='GET') {
     $id=@$_POST['id'];
     $op=@$_POST['op'];
 }
-$barang=@$_POST['barang'];
-$supplier=@$_POST['supplier'];
+$penginapan=@$_POST['penginapan'];
+$perusahaan=@$_POST['perusahaan'];
 $kriteria=@$_POST['kriteria'];
 $sifat=@$_POST['sifat'];
 $nilai=@$_POST['nilai'];
 $keterangan=@$_POST['keterangan'];
 $bobot=@$_POST['bobot'];
 switch ($op){
-    case 'barang'://tambah data barang
-        $query="INSERT INTO jenis_barang (namaBarang) VALUES ('$barang')";
+    case 'penginapan'://tambah data penginapan
+        $query="INSERT INTO jenis_penginapan (namaPenginapan) VALUES ('$penginapan')";
         $crud->addData($query,$konek);
     break;
-    case 'supplier': //tambah data supplier
-        $query="INSERT INTO supplier (namaSupplier) VALUES ('$supplier')";
+    case 'perusahaan': //tambah data perusahaan
+        $query="INSERT INTO perusahaan (namaPerusahaan) VALUES ('$perusahaan')";
         $crud->addData($query,$konek);
     break;
     case 'kriteria'://tambah data kriteria
@@ -39,18 +39,18 @@ switch ($op){
         $crud->multiAddData($cek,$query,$konek);
     break;
     case 'bobot'://tambah data bobot
-        $cek="SELECT id_bobotkriteria FROM bobot_kriteria WHERE id_jenisbarang='$barang'";
+        $cek="SELECT id_bobotkriteria FROM bobot_kriteria WHERE id_jenispenginapan='$penginapan'";
         $query=null;
         for ($i=0;$i<count($kriteria);$i++){
-            $query.="INSERT INTO bobot_kriteria (id_jenisbarang,id_kriteria,bobot) VALUES ('$barang','$kriteria[$i]','$bobot[$i]');";
+            $query.="INSERT INTO bobot_kriteria (id_jenispenginapan,id_kriteria,bobot) VALUES ('$penginapan','$kriteria[$i]','$bobot[$i]');";
         }
         $crud->multiAddData($cek,$query,$konek);
     break;
     case 'nilai'://tambah data nilai
-        $cek="SELECT id_supplier FROM nilai_supplier WHERE id_supplier='$supplier'";
+        $cek="SELECT id_perusahaan FROM nilai_perusahaan WHERE id_perusahaan='$perusahaan'";
         $query=null;
         for ($i=0;$i<count($nilai);$i++){
-            $query.="INSERT INTO nilai_supplier (id_supplier,id_jenisbarang,id_kriteria,id_nilaikriteria) VALUES ('$supplier','$barang','$kriteria[$i]','$nilai[$i]');";
+            $query.="INSERT INTO nilai_perusahaan (id_perusahaan,id_jenispenginapan,id_kriteria,id_nilaikriteria) VALUES ('$perusahaan','$penginapan','$kriteria[$i]','$nilai[$i]');";
         }
         $crud->multiAddData($cek,$query,$konek);
     break;
